@@ -193,24 +193,21 @@ namespace Homework4
 
                     // Group cleint by last name
                     Console.WriteLine("*************GROUP BY LAST NAME************");
-                    var gByLastName = from c in db.Clients group c by c.LastName;
-                    foreach(var lG in gByLastName)
+                    var groupByLastName = from c in db.Clients group c by c.LastName;
+                    foreach(var lastGroup in groupByLastName)
                     {
-                        Console.WriteLine($"Last Name : {lG.Key}");
-                        foreach(Client c in lG)
+                        Console.WriteLine($"Last Name: {lastGroup.Key}");
                         {
-                            Console.WriteLine(c);
+                            foreach(Client c in lastGroup)
+                            {
+                                Console.WriteLine(c);
+                            }
                         }
-                    }
-
-                    
-                   
-                    
-                    
+                    }   
  
                 }
-
                 
+                    db.Database.EnsureCreated();
 
                     if( !db.Clients.Any() && !db.Organizations.Any())
                 
